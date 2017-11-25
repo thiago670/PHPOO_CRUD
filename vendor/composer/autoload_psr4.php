@@ -10,6 +10,7 @@ return array(
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Interop\\Container\\' => array($vendorDir . '/container-interop/container-interop/src/Interop/Container'),
+    'Helpers\\' => array($baseDir . '/helpers'),
     'FastRoute\\' => array($vendorDir . '/nikic/fast-route/src'),
     'Config\\' => array($baseDir . '/config'),
     'App\\' => array($baseDir . '/app'),

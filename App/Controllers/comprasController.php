@@ -1,31 +1,41 @@
 <?php
+
 namespace App\Controllers;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class ComprasController
+use App\Models\Compra;
+
+class comprasController extends controle
 {
+	public function index(ServerRequestInterface $request, ResponseInterface $response)
+	{
+	    $compras = Compra::All();
+	    $this->compras=$compras;
+		return $this->view('compras/index',$response);
+	}
+	public function adicionar(ServerRequestInterface $request, ResponseInterface $response)
+	{
+		return $this->view('compras/create',$response);
+	}
 
+	public function salvar(ServerRequestInterface $request, ResponseInterface $response)
+	{
+		$dados=$request->getParsedBody();
+		$compra = new Compra;
+		$compra->titulo=$dados['titulo'];
+		$compra->desc=$dados['desc'];
+		$idCompra=$compra->save();
 
-  public function index(ServerRequestInterface $request, ResponseInterface $response)
-  {
-    $compras = [
-      ["titulo"=>"Carvão","desc"=>"5kg"],
-      ["titulo"=>"Arroz","desc"=>"1kg"],
-      ["titulo"=>"Cerveja","desc"=>"Latão"]
-    ];
+		if ($idCompra) {
+			echo "Sucesso";			
+		}else
+		{
+			echo "falha";
+		}
 
-    $this->compras = $compras;
-
-    return $this->view('home',$response);
-  }
-
-  private function view($view,ResponseInterface $response)
-  {
-    $pagina = include '../app/views/'.$view.'.php';
-
-    $response->getBody()->getContents($pagina);
-    return $response;
-  }
+		return $response->withRedirect('/compras');
+		
+	}
 }

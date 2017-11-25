@@ -2,9 +2,8 @@
 
 namespace Config;
 
-class siteInfo
+class SiteInfo
 {
-	public static $nome="Meu Site";
-	public static $descricao="Site de Vendas";
-
+  public static $nome= "Meu Site";
+  public static $descricao= "Site de Vendas";
 }

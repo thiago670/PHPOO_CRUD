@@ -2,12 +2,17 @@
 
 require '../bootstrap.php';
 
-use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Message\ResponseInterface;
+
 use Slim\App;
 use App\Controllers\comprasController;
 
 
 $app = new App;
-$app->get('/', comprasController::class.':index');
+$app->get('/',comprasController::Class.':index');
+$app->get('/compras',comprasController::Class.':index');
+$app->get('/compras/adicionar',comprasController::Class.':adicionar');
+$app->post('/compras',comprasController::Class.':salvar');
+
+
 $app->run();
+
