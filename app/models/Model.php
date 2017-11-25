@@ -15,6 +15,22 @@ class model
 		$compras=$ret->fetchAll();
 	    return $compras;
 
+	}	
+	static public function find(int $id)
+	{
+		$obj=new static;
+		$conn=Db::conexao();
+		$select="select * from ".$obj->table." where ".$obj->primary_key."=:id limit 1";
+		$stmt=$conn->prepare($select);
+		$stmt->bindValue(':id',$id);
+		$stmt->execute();
+		$objAux=$stmt->fetch(\PDO::FETCH_OBJ);
+
+		foreach ($objAux as $key => $value) {
+			$obj->{$key}=$value;
+		}
+
+	    return $obj;
 	}
 	public function save()
 	{

@@ -6,7 +6,10 @@
 	<p>Lista de Compras</p>
 	<ul>
 		<?php foreach ($this->compras as $key => $value): ?>
-			<li><?php echo $value['titulo'].' - '.$value['desc'].'.'?></li>
+			<li>
+				<?php echo $value['titulo'].' - '.$value['desc'].'.'?>
+				<a href="/compras/detalhe/<?php echo $value['id'] ?>"><button>Detalhe</button></a>
+			</li>
 		<?php endforeach ?>
 	</ul>
 

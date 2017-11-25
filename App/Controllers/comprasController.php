@@ -38,4 +38,11 @@ class comprasController extends controle
 		return $response->withRedirect('/compras');
 		
 	}
+	public function detalhe(ServerRequestInterface $request, ResponseInterface $response)
+	{
+		$id=$request->getAttribute('id');
+		$compra = Compra::find($id);
+	    $this->compras=$compra;
+		return $this->view('compras/show',$response);
+	}
 }
